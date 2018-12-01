@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>scrollIntoView2</title>
+    <style>
+        dt{
+            font-weight: bold;
+        }
+        .placeholder {
+            height: 4000px;
+        }
+    </style>
+</head>
+
+<body>
+    <b>
+        使元素进入可视界面
+    </b>
+    <dl>
+        <dt>不可获取焦点元素</dt>
+        <dl>进入可视界面</dl>
+        <dt>可获取焦点元素</dt>
+        <dl>进入可视界面并获取到焦点</dl>
+    </dl>
+    <form id="jumpto">
+        <label><input name="type" type="radio" value="scrollIntoView" checked>原生scrollIntoView</label>
+        <label><input name="type" type="radio" value="scrollIntoView2">scrollIntoView2</label><br/><br/>
+        <label><input name="couldFocus" type="radio" value="#couldNotFocusDom" checked>不可focus的目标元素</label>
+        <label><input name="couldFocus" type="radio" value="#couldFocusDom">可focus的目标元素</label><br/><br/>
+        <input type="submit" value="跳转到目标元素" />
+    </form>
+    <div class="placeholder"></div>
+    <div id="couldNotFocusDom">不可focus的目标元素</div>
+    <div class="placeholder"></div>
+    <input id="couldFocusDom" value="可focus的目标元素" />
+    <div class="placeholder"></div>
+    <script src="scrollIntoView2.js"></script>
+    <script>
+        document.querySelector("#jumpto").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var target = document.querySelector(this.couldFocus.value);
+            switch (this.type.value) {
+                case "scrollIntoView": target.scrollIntoView(); break;
+                case "scrollIntoView2": scrollIntoView2(target); break;
+            }
+        })
+    </script>
+</body>
+
+</html>
